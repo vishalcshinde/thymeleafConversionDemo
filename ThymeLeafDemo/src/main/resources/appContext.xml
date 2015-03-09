@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd">
+	<mvc:annotation-driven conversion-service="conversionService" />
+	<context:component-scan base-package="com.vishal"></context:component-scan>
+	<bean id="conversionService"
+		class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+		<property name="formatters">
+			<set>
+				<bean class="org.springframework.format.datetime.DateFormatter" p:pattern="dd/MMM/yyyy" />
+			</set>
+		</property>
+	</bean>
+	<bean id="contact" class="com.vishal.Contact">
+		<property name="age" value="20"></property>
+		<property name="date">
+			<bean class="java.util.Date"></bean>
+		</property>
+		<property name="name" value="Vishal"></property>
+	</bean>
+
+	<bean class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
+		<property name="templateEngine">
+			<bean class="org.thymeleaf.spring4.SpringTemplateEngine">
+				<property name="templateResolver">
+					<bean class="org.thymeleaf.templateresolver.ClassLoaderTemplateResolver">
+						<property name="templateMode" value="XHTML"></property>
+						<property name="prefix" value="views/"></property>
+						<property name="suffix" value=".html"></property>
+					</bean>
+				</property>
+			</bean>
+		</property>
+	</bean>
+</beans>
