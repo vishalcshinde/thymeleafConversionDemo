@@ -13,6 +13,7 @@
 		class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
 		<property name="formatters">
 			<set>
+				<bean class="org.springframework.format.datetime.DateFormatter" ></bean>
 				<bean class="org.springframework.format.datetime.DateTimeFormatAnnotationFormatterFactory"></bean>
 			</set>
 		</property>
