@@ -37,6 +37,6 @@ public class HelloTest {
 	public void testName() throws Exception {
 		assertNotNull(mvc);
 		mvc.perform(get("/message")).andExpect(status().isOk())
-				.andExpect(content().string(containsString("10/Mar/2015")));
+				.andExpect(content().string(containsString("10Mar2015")));
 	}
 }
